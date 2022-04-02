@@ -16,5 +16,6 @@ close()
 modalMain.classList.add('modal_active');
 
 showSuccess.onclick = () => { 
+  modalMain.classList.remove('modal_active');
   showSuccessActive.classList.add('modal_active');
 }
