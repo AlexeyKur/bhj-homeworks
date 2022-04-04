@@ -12,7 +12,10 @@ for(let i = 0; i < menuLinks.length; i++) {
   const sub = link.querySelector('.menu_sub');
   
   menuLinks[i].onclick = () => {
-    if(sub.classList.contains('menu_active')) {
+    if(sub === null) {
+      return true;
+    }
+    if(sub.classList.contains('menu_active')) {  
       closeMenu();
       return false;
     }else if(link && sub != null) {
