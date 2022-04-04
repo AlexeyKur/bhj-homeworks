@@ -23,11 +23,13 @@ function showSliders (n) {
 }
 
 function plusSlides (n) {
-  showSliders(slideIndex += n);
+  let i = slideIndex += n;
+  showSliders(i);
 }
 
 function itemDot (n) {
-  showSliders(slideIndex = n);
+  let i = slideIndex = n;
+  showSliders(i);
 }
 
 arrowNext.onclick = () => {
