@@ -1,7 +1,6 @@
 const tasksInput = document.getElementById('task__input');
 const tasksAdd = document.getElementById('tasks__add');
 const tasksList = document.getElementById('tasks__list');
-let inputText = '';
 
 const taskListAdd = (text) => {
   tasksList.insertAdjacentHTML('beforeend', `<div class="task">
@@ -11,29 +10,29 @@ const taskListAdd = (text) => {
     <a href="#" class="task__remove">&times;</a>
   </div>`);
   tasksInput.value = '';
-  const task = Array.from(tasksList.querySelectorAll('.task'));
-  task.forEach((item, idx) => {
-    const taskRemove = item.querySelector('.task__remove');
-    if(taskRemove !== null) {
-      taskRemove.addEventListener('click', (e) => {
-        e.preventDefault();
-        task[idx].remove();
-      });
-    }
+  const task = Array.from(document.querySelectorAll('.task'));
+  const taskRemove = Array.from(document.querySelectorAll('.task__remove'));
+  let taskId = task.length - 1;
+  taskRemove[taskId].addEventListener('click', (e) => {
+    e.preventDefault();
+    task[taskId].remove();
   });
 }
 
 tasksInput.addEventListener('keyup', (e) => {
   e.preventDefault();
-  if(e.key === 'Enter' && tasksInput.value !== '') {
-    taskListAdd(inputText);
+  if(e.key === 'Enter' && tasksInput.value.trim().length !== 0) {   
+    taskListAdd(tasksInput.value);
+  } else if(e.key === 'Enter') {
+    tasksInput.value = '';
   }
-  inputText = tasksInput.value;
 });
 
 tasksAdd.addEventListener('click', (e) => {
   e.preventDefault();
-  if(e.currentTarget && tasksInput.value !== '') {
-    taskListAdd(inputText);
+  if(e.currentTarget && tasksInput.value.trim().length !== 0) {
+    taskListAdd(tasksInput.value);
+  } else if(e.currentTarget) {
+    tasksInput.value = '';
   }
 });
